@@ -19,7 +19,7 @@ const Navigation = () => (
 const NavigationAuth = () => (
   <ul>
     <li>
-      <Link to={ROUTES.LANDING}>IOTD</Link>
+      <Link to={ROUTES.LANDING}>IOTA</Link>
     </li>
     <li>
       <Link to={ROUTES.HOME}>Home</Link>

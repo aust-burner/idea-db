@@ -4,8 +4,14 @@ import { withAuthorization } from '../Session';
 
 const HomePage = () => (
   <div>
-    <h1>Home Page</h1>
-    <p>The Home Page is accessible by every signed in user.</p>
+    <h1>Welcome to IOTD</h1>
+    <div>
+      IOTD
+    </div>
+    <h2>What are you thinking today?</h2>
+    <div>
+      addIdea Textbox
+    </div>
   </div>
 );
 
