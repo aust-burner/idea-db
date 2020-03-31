@@ -1,23 +1,22 @@
 import React, { useContext } from 'react';
-import { IdeaContext } from '../contexts/IdeaContext';
 
-const IdeaDetails = ({ idea }) => {
-    const { dispatch } = useContext(IdeaContext)
 
-    const handleSubmit = (vote) => {}
+const IdeaDetails = (props) => {
+    let idea = props.idea;
+    let upVote = props.upVote;
+    let downVote = props.downVote;
+    
     return (
-        <div className="idea-wrapper">
-            <div className="idea">
-                <li onClick={() => dispatch({ type: "REMOVE_IDEA", id: idea.id})}>
-                    <div className="title">{idea.title}</div>
-                    <div className="description">{idea.description}</div>
-                </li>
+        <li className="idea-wrapper">
+            <div className="idea"> 
+                <div className="title">{idea.title}</div>
+                <div className="description">{idea.description}</div>
             </div>
             <div className="voting">
-                <button onClick={() => handleSubmit('up')}>Upvote</button>
-                <button onClick={() => handleSubmit('down')}>Downvote</button>
+                <button onClick={() => upVote(idea.id)}>Upvote</button>
+                <button onClick={() => downVote(idea.id)}>Downvote</button>
             </div>
-        </div>
+        </li>
     );
 }
 

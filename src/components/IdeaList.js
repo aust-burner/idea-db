@@ -1,15 +1,18 @@
 import React, { useContext } from 'react';
-import { IdeaContext } from '../contexts/IdeaContext';
 import IdeaDetails from './IdeaDetails';
 
-const IdeaList = () => {
-    const { ideas } = useContext(IdeaContext)
-    return ideas.length ? (
-
+const IdeaList = (props) => {
+    let ideas = props.ideas;
+    let upVote = props.upVote;
+    let downVote = props.downVote;
         ideas = [
+            
             {ideaTitle: 'title', ideaDescription: 'desc'},
             {ideaTitle: 'title', ideaDescription: 'desc'}
-        ]
+    ]
+
+    return ideas.length ? (
+
         <div className="idea-list">
             <ul>
                 {ideas.map(idea => {

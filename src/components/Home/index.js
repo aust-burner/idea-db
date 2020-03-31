@@ -1,10 +1,12 @@
 import React from 'react';
+import IdeaList from '../IdeaList';
 
 import { withAuthorization } from '../Session';
 
 const HomePage = () => (
   <div>
     <h1>Welcome to IOTD</h1>
+    <IdeaList />
     <div>
       IOTD
     </div>
