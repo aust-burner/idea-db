@@ -1,14 +1,14 @@
-import React, { useContext, useState } from 'react';
-import { IdeaContext } from '../contexts/IdeaContext';
+import React, { useState } from 'react';
 
-const IdeaForm = () => {
-    const { addIdea } = useContext(IdeaContext)
+
+const IdeaAdd = (props) => {
+    const addIdea = props.addIdea
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        addMovie(title, description)
+        addIdea(title, description)
         setTitle('')
         setDescription('')
     }
@@ -23,7 +23,7 @@ const IdeaForm = () => {
             />
             <input
                 type="text"
-                placeholder="Movie Description"
+                placeholder="Idea Description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
             />

@@ -5,19 +5,14 @@ const IdeaList = (props) => {
     let ideas = props.ideas;
     let upVote = props.upVote;
     let downVote = props.downVote;
-        ideas = [
-            
-            {ideaTitle: 'title', ideaDescription: 'desc'},
-            {ideaTitle: 'title', ideaDescription: 'desc'}
-    ]
-
+        
     return ideas.length ? (
 
         <div className="idea-list">
             <ul>
                 {ideas.map(idea => {
                     return (
-                        <IdeaDetails idea={idea} key={idea.id}></IdeaDetails>
+                        <IdeaDetails idea={idea} key={idea.id} upVote={upVote} downVote={downVote}></IdeaDetails>
                     )
                 })}
             </ul>

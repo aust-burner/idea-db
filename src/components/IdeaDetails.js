@@ -11,6 +11,7 @@ const IdeaDetails = (props) => {
             <div className="idea"> 
                 <div className="title">{idea.title}</div>
                 <div className="description">{idea.description}</div>
+                <div className="voteCount">{idea.voteCount}</div>
             </div>
             <div className="voting">
                 <button onClick={() => upVote(idea.id)}>Upvote</button>
