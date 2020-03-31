@@ -10,7 +10,7 @@ const HomePage = () => (
     </div>
     <h2>What are you thinking today?</h2>
     <div>
-      addIdea Textbox
+      addIdea Modal
     </div>
   </div>
 );
