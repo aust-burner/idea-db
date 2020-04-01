@@ -1,18 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import IdeaList from '../IdeaList';
 import IdeaAdd from '../IdeaAdd';
 import { v4 as uuidv4 } from 'uuid';
+import { withFirebase } from '../Firebase';
+
 
 import { withAuthorization } from '../Session';
 
-const HomePage = () => {
-  let initialIdeas = [
-            
-    {title: 'testTitle1', description: 'testDescription1', id: 1, voteCount: 5},
-    {title: 'testTitle2', description: 'testDescription2', id: 2, voteCount: 2}
-  ]
+const HomePage = (props) => {
+  let firebase = props.firebase 
+  const ideasRef = firebase.ideas ()
 
-  const [state, setState] = useState({ideas:initialIdeas})
+  const [state, setState] = useState({ideas: []})
+  useEffect(() => {
+    ideasRef.on('value', (snapshot) => {
+      const snapshotValue = snapshot.val()
+      if (snapshotValue) {
+        const ideas = Object.values(snapshot.val())
+        setState ({ideas: ideas})
+        console.log(ideas)
+      }
+      
+    })
+  }, [])
+
 
   let upVote = (id) => {
     console.log('upVote', id)
@@ -22,6 +33,9 @@ const HomePage = () => {
     })
     console.log(state.ideas)
     setState ({ideas: state.ideas})
+    ideasRef.child(id).child('voteCount').transaction((voteCount) => {
+      return voteCount +1
+    })
   }
 
   let downVote = (id) => {
@@ -32,35 +46,50 @@ const HomePage = () => {
       })
       console.log(state.ideas)
       setState ({ideas: state.ideas})
-    }
   }
 
   let addIdea = (title, description) => {
     console.log('Add Idea', title, description)
+    const idea = {title: title, description: description, id: uuidv4(), voteCount: 0}
+    ideasRef.child(idea.id).set(idea)
     
-    setState({ideas: [...state.ideas, {title: title, description: description, id: uuidv4(), voteCount: 0}]})
+    setState({ideas: [...state.ideas, idea]})
     
   }
 
-
-
   return(
-    <div>
-      <h1>Welcome to IOTD</h1>
+    <div className="Home-page-wrapper">
+      <div>
+        <h1>Welcome to IOTD</h1>
+      </div>
+
       <IdeaList ideas={state.ideas} upVote={upVote} downVote={downVote} />
+
       <div>
         IOTD
       </div>
-      <h2>What are you thinking today?</h2>
-      <IdeaAdd addIdea={addIdea}/>
-      <div>
-        addIdea Modal
+      <div className='add-idea-wrapper'
+      style={{
+        width: '60%',
+        maxWidth: '25rem',
+        margin: '2rem auto',
+        border: '2px solid black',
+        padding: '1rem',
+        backgroundColor: 'lightgray'
+      }}
+      >
+
+        <h2>What are you thinking today?</h2>
+        <div>
+          <IdeaAdd addIdea={addIdea}/>
+        </div>
+
       </div>
     </div>
-    )
-  
+  )
+}
 
 
 const condition = authUser => !!authUser;
 
-export default withAuthorization(condition)(HomePage);
+export default withFirebase(withAuthorization(condition)(HomePage));
