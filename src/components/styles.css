@@ -17,7 +17,38 @@ body {
       width: 90%;
       max-width: 40rem;
       margin: 2rem auto;
-      border: 1px solid #ccc;
+      border: 2px black;
       padding: 1rem;
       text-align: center;
+      background-color: lightblue;
   }
+
+  .add-idea-wrapper {
+    width: 60%;
+        max-width: 25rem;
+        margin: 2rem auto;
+        border: 2px solid black;
+        padding: 1rem;
+        background-color: orange;
+  }
+
+  .Landing-page-wrapper {
+    width: 90%;
+    max-width: 40rem;
+    margin: 2rem auto;
+    border: 1px black;
+    padding: 1rem;
+    background-color: lightGrey;
+  }
+
+  .Landing-page-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .welcome-banner {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
+

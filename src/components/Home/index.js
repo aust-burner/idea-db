@@ -68,16 +68,7 @@ const HomePage = (props) => {
       <div>
         IOTD
       </div>
-      <div className='add-idea-wrapper'
-      style={{
-        width: '60%',
-        maxWidth: '25rem',
-        margin: '2rem auto',
-        border: '2px solid black',
-        padding: '1rem',
-        backgroundColor: 'lightgray'
-      }}
-      >
+      <div className='add-idea-wrapper'>
 
         <h2>What are you thinking today?</h2>
         <div>
