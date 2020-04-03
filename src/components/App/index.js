@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
+
+
 import LandingPage from '../Landing';
 import Navigation from '../Navigation';
 import SignUpPage from '../SignUp';
@@ -13,6 +15,8 @@ import AccountPage from '../Account';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
+
+
 
 const App = () => (
   <Router>
